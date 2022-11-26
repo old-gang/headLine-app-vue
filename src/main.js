@@ -1,0 +1,18 @@
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// 引入字体样式
+import './assets/css/icon.less'
+
+// 全局引入vant组件库
+import Vant from 'vant'
+// 引入组件库样式
+import 'vant/lib/index.css'
+// 自动设置rem基准值
+import 'amfe-flexible'
+
+const app = createApp(App)
+// 全局注册vant
+app.use(Vant)
+
+app.mount('#app')
