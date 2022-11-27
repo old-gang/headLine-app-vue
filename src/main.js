@@ -1,23 +1,25 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
 // 引入路由
-import router from './router'
+import router from "./router";
 
 // 引入字体样式
-import './assets/css/icon.less'
+import "@/assets/css/icon.less";
+// 引入全局样式
+import "@/assets/css/index.less";
 
 // 全局引入vant组件库
-import Vant from 'vant'
+import Vant from "vant";
 // 引入组件库样式
-import 'vant/lib/index.css'
+import "vant/lib/index.css";
 // 自动设置rem基准值
-import 'amfe-flexible'
+import "amfe-flexible";
 
-const app = createApp(App)
+const app = createApp(App);
 // 全局注册vant
-app.use(Vant)
+app.use(Vant);
 // 注册路由
-app.use(router)
+app.use(router);
 
-app.mount('#app')
+app.mount("#app");
