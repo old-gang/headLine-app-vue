@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+// 引入路由
+import router from './router'
+
 // 引入字体样式
 import './assets/css/icon.less'
 
@@ -14,5 +17,7 @@ import 'amfe-flexible'
 const app = createApp(App)
 // 全局注册vant
 app.use(Vant)
+// 注册路由
+app.use(router)
 
 app.mount('#app')
