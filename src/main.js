@@ -5,7 +5,7 @@ import App from './App.vue';
 import router from './router';
 
 // 引入仓库
-import store from './store';
+import pinia from './store';
 
 // 全局引入vant组件库
 import Vant from 'vant';
@@ -25,6 +25,6 @@ app.use(Vant);
 // 注册路由
 app.use(router);
 // 注册仓库
-app.use(store);
+app.use(pinia);
 
 app.mount('#app');

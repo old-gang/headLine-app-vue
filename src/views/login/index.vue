@@ -67,11 +67,11 @@
   // 请求函数
   import { login, sendSms } from '@/api/user';
   import { Toast } from 'vant';
-  import { useStore } from 'vuex';
+  import { useUserInfoStore } from '@/store/userInfo';
   // 获取路由器
   const router = useRouter();
   // 获取仓库
-  const store = useStore();
+  const userInfoStore = useUserInfoStore()
   // 收集用户信息
   const user = reactive({
     mobile: '17812085173', //17090086870
@@ -111,7 +111,7 @@
       let { data } = await login(user);
       Toast.success('登录成功');
       // 提交仓库，存储token
-      store.commit('setUser', data.data);
+      userInfoStore.user( data.data);
     } catch (error) {
       Toast.fail('登录失败，手机号或验证码错误');
     }
@@ -133,7 +133,7 @@
       // 添加loading是为了防止用户多次点击行为
       isSendSmsLoading.value = true;
       // 发送验证码
-      let res = await sendSms(user.mobile);
+      await sendSms(user.mobile);
       // 打开倒计时
       isDownShow.value = true;
     } catch (error) {
