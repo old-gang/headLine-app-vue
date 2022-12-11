@@ -102,7 +102,7 @@
   const onLogin = async () => {
     Toast.loading({
       message: '登录中……', //提示文字
-      forbidClick: true, //进制背景点击
+      forbidClick: true, //禁止背景点击
       duration: 0, //持续时长
     });
     // 17090086870   246810
@@ -112,7 +112,6 @@
       Toast.success('登录成功');
       // 提交仓库，存储token
       store.commit('setUser', data.data);
-      localStorage.setItem('user', JSON.stringify(data.data));
     } catch (error) {
       Toast.fail('登录失败，手机号或验证码错误');
     }
@@ -122,7 +121,7 @@
     if (error.errors[0]) {
       Toast({
         message: error.errors[0].message,
-        position: 'top',
+        position: 'top', //防止手机键盘太高看不见提示信息
       });
     }
   };
