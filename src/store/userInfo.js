@@ -5,15 +5,15 @@ const USER_KEY = 'toutiao-user'; //避免读取和存储的值不一致，导致
 export const useUserInfoStore = defineStore('userInfo', {
   state: () => {
     return {
-      token: getItem(USER_KEY),
+      user: getItem(USER_KEY),
     };
   },
   actions: {
-    user(data) {
+    USER(data) {
       // 仓库里储存token
-      this.token = data.token;
+      this.user = data;
       // 本地存储token,防止数据丢失
-      setItem(USER_KEY, data.token);
+      setItem(USER_KEY, data);
     },
   },
   getters: {},

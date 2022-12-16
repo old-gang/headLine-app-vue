@@ -111,7 +111,9 @@
       let { data } = await login(user);
       Toast.success('登录成功');
       // 提交仓库，存储token
-      userInfoStore.user( data.data);
+      userInfoStore.USER( data.data);
+      // 跳转回原来的页面
+      router.back()
     } catch (error) {
       Toast.fail('登录失败，手机号或验证码错误');
     }

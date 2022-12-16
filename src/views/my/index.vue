@@ -1,6 +1,6 @@
 <template>
   <div class="my-container">
-    <van-cell-group class="my-info">
+    <van-cell-group v-if="store.user" class="my-info">
       <van-cell center :border="false" class="base-info">
         <template #icon>
           <van-image
@@ -43,6 +43,12 @@
         </van-grid-item>
       </van-grid>
     </van-cell-group>
+    <div v-else class="not-login">
+      <div class="mobile" @click="router.push('/login')">
+        <img src="../../assets/images/default-avatar.png" />
+      </div>
+      <div class="text"> 登录 / 注册 </div>
+    </div>
 
     <van-grid :column-num="2" class="nav-grid mb-4">
       <van-grid-item class="nav-grid-item" icon-prefix="toutiao" icon="shoucang" text="收藏" />
@@ -51,15 +57,34 @@
 
     <van-cell title="消息通知" is-link to="/" />
     <van-cell class="mb-4" title="小智同学" is-link to="/" />
-    <van-cell v-if="store.token" class="logout" title="退出登录" />
+    <van-cell v-if="store.user" class="logout" title="退出登录" @click="onLogout" />
+    <van-dialog
+      v-model:show="show"
+      title="退出提示"
+      message="确认退出吗？"
+      show-cancel-button
+      @confirm="handlerLogout"></van-dialog>
   </div>
 </template>
 
 <script setup>
   import { ref, computed, onMounted } from 'vue';
   import { useUserInfoStore } from '@/store/userInfo';
+  import { useRouter } from 'vue-router';
 
+  const router = useRouter();
   const store = useUserInfoStore();
+  // 退出弹窗
+  const show = ref(false);
+
+  // 退出登录
+  const onLogout = () => {
+    show.value = true;
+  };
+  // 确认对话框的回调
+  const handlerLogout = () => {
+    store.USER(null);
+  };
 </script>
 
 <style lang="less" scoped>
@@ -104,6 +129,26 @@
       }
       :deep(.van-grid-item__content) {
         background-color: unset;
+      }
+    }
+    .not-login {
+      height: 180px;
+      background-color: skyblue;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .mobile {
+        width: 66px;
+        height: 66px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .text {
+        font-size: 14px;
+        color: #fff;
       }
     }
     :deep(.nav-grid) {
