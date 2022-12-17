@@ -7,10 +7,10 @@
             class="avator"
             round
             fit="cover"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+            :src="user.photo" />
         </template>
         <template #title>
-          <div class="name">昵称</div>
+          <div class="name">{{user.name}}</div>
         </template>
         <template #value>
           <van-button class="update-btn" size="small" round> 编辑资料 </van-button>
@@ -19,25 +19,25 @@
       <van-grid :border="false" class="data-info">
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">123</div>
+            <div class="count">{{user.art_count}}</div>
             <div class="text">头条</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">123</div>
+            <div class="count">{{user.follow_count}}</div>
             <div class="text">关注</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">12344</div>
-            <div class="text">粉44丝</div>
+            <div class="count">{{user.fans_count}}</div>
+            <div class="text">粉丝</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">123</div>
+            <div class="count">{{user.like_count}}</div>
             <div class="text">获赞</div>
           </template>
         </van-grid-item>
@@ -68,14 +68,17 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue';
+  import { ref, computed, onMounted, reactive } from 'vue';
   import { useUserInfoStore } from '@/store/userInfo';
   import { useRouter } from 'vue-router';
+  import { currentUser } from '@/api/user';
 
   const router = useRouter();
   const store = useUserInfoStore();
   // 退出弹窗
   const show = ref(false);
+  // 当前登录用户的信息
+  const user = ref({});
 
   // 退出登录
   const onLogout = () => {
@@ -83,8 +86,20 @@
   };
   // 确认对话框的回调
   const handlerLogout = () => {
+    // 清空用户的登录状态
     store.USER(null);
   };
+
+  // 获取当前用户信息
+  const getCurrentUser = async () => {
+    let res = await currentUser();
+    user.value = res.data;
+  };
+
+  onMounted(() => {
+    // 获取当前用户信息
+    getCurrentUser();
+  });
 </script>
 
 <style lang="less" scoped>

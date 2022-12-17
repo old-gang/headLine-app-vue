@@ -9,3 +9,6 @@ export const login = (data) => request.post('/v1_0/authorizations', data);
 
 // 发送验证码
 export const sendSms = mobile => request.get(`/v1_0/sms/codes/${mobile}`)
+
+// 获取当前用户信息
+export const currentUser = () => request.get('/v1_0/user')

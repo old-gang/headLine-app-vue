@@ -71,7 +71,7 @@
   // 获取路由器
   const router = useRouter();
   // 获取仓库
-  const userInfoStore = useUserInfoStore()
+  const userInfoStore = useUserInfoStore();
   // 收集用户信息
   const user = reactive({
     mobile: '17812085173', //17090086870
@@ -108,12 +108,12 @@
     // 17090086870   246810
     // 13911111111   246810
     try {
-      let { data } = await login(user);
+      let res = await login(user);
       Toast.success('登录成功');
       // 提交仓库，存储token
-      userInfoStore.USER( data.data);
+      userInfoStore.USER(res.data);
       // 跳转回原来的页面
-      router.back()
+      router.back();
     } catch (error) {
       Toast.fail('登录失败，手机号或验证码错误');
     }
