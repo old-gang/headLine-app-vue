@@ -10,7 +10,8 @@
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad">
-        <van-cell v-for="(article, index) in articles" :key="index" :title="article.title" />
+        <!-- <van-cell v-for="(article, index) in articles" :key="index" :title="article.title" /> -->
+        <article-item v-for="(article, index) in articles" :key="index" :article="article" />
       </van-list>
     </van-pull-refresh>
   </div>
@@ -19,6 +20,7 @@
 <script setup>
   import { ref } from 'vue';
   import { reqGetArticles } from '@/api/article';
+  import ArticleItem from '@/components/article-item';
   // 列表组件
   const articles = ref([]); //数据列表
   const loading = ref(false); //控制加载中的loading状态

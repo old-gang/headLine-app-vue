@@ -9,7 +9,7 @@
       </template>
     </van-nav-bar>
     <!-- 导航栏 -->
-    <van-tabs v-model:active="active">
+    <van-tabs class="channel-tab" v-model:active="active">
       <van-tab v-for="item in channels" :title="item.name" :key="item.id">
         <articleList :channel="item"></articleList>
       </van-tab>
@@ -20,15 +20,15 @@
 <script setup>
   import { ref, onMounted, reactive } from 'vue';
   import { reqUserChannels } from '@/api/user';
-  import articleList from './components/article-list.vue'
+  import articleList from './components/article-list.vue';
   // 控制被激活的标签
   const active = ref(0);
   // 用户选择的标签
-  const channels = ref([])
+  const channels = ref([]);
 
   const getUserChannels = async () => {
     let res = await reqUserChannels();
-    channels.value = res.data.channels
+    channels.value = res.data.channels;
   };
 
   onMounted(() => {
@@ -56,6 +56,18 @@
         :deep(.van-button__text) {
           font-size: 14px;
         }
+      }
+    }
+    .channel-tab {
+      :deep(.van-tab) {
+        border-right: 1px solid #edeff3;
+        border-bottom: 1px solid #edeff3;
+      }
+      :deep(.van-tabs__line) {
+        bottom: 20px;
+        width: 15px !important;
+        height: 3px;
+        background-color: #3296fa;
       }
     }
   }
