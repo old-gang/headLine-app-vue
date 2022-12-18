@@ -13,8 +13,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+  import { ref } from 'vue';
+  const active = ref(0);
+</script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
