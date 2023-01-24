@@ -7,3 +7,10 @@ export const reqGetArticles = (params) =>
     method: 'get',
     params,
   });
+
+// 获取文章
+export const reqGetArticleById = (articleId) =>
+  request({
+    url: `/v1_0/articles/${articleId}`,
+    method: 'get',
+  });

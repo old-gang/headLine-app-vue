@@ -39,4 +39,11 @@ export const routes = [
     name: 'search',
     component: () => import('@/views/search'),
   },
+  // 文章详情
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article'),
+    props: true,
+  },
 ];
