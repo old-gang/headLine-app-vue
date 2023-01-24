@@ -3,7 +3,7 @@
     <!-- 搜索 -->
     <van-nav-bar class="app-nav-bar">
       <template #title>
-        <van-button class="search-btn" icon="search" type="info" round size="small"
+        <van-button class="search-btn" icon="search" type="info" round size="small" to="/search"
           >搜索</van-button
         >
       </template>
