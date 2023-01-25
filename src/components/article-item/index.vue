@@ -12,7 +12,7 @@
       <div class="label-wrap">
         <span>{{ article.aut_name }}</span>
         <span>{{ article.comm_count }}评论</span>
-        <span>{{ time(article.pubdate) }}</span>
+        <span>{{ realtiveTime(article.pubdate) }}</span>
       </div>
     </template>
     <!-- 单张封面 -->
@@ -24,7 +24,7 @@
 
 <script setup>
   // 引入自定义函数
-  import time from '@/hook/useDayjs';
+  import {realtiveTime} from '@/hook/useDayjs';
   defineProps(['article']);
 </script>
 

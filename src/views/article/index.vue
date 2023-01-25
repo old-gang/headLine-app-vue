@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-wrap">
     <!-- Header 区域 -->
     <van-nav-bar fixed title="文章详情" left-arrow @click-left="router.back()" />
 
@@ -9,7 +9,7 @@
       <h1 class="art-title">{{ article.title }}</h1>
 
       <!-- 用户信息 -->
-      <van-cell center :label="time(article.pubdate)">
+      <van-cell center :label="realtiveTime(article.pubdate)">
         <template #title>
           {{ article.aut_name }}
         </template>
@@ -49,6 +49,14 @@
         <van-button icon="good-job" type="danger" size="small">已点赞</van-button>
         <van-button icon="good-job-o" type="danger" plain size="small">点赞</van-button>
       </div>
+
+      <!-- 品论列表 -->
+      <comment-list :articleId="articleId"></comment-list>
+    </div>
+
+    <!-- 底部区域 -->
+    <div class="footer">
+      <van-button plain type="primary">写评论</van-button>
     </div>
   </div>
 </template>
@@ -57,8 +65,9 @@
   import { reqGetArticleById } from '@/api/article';
   import { ref, onMounted, nextTick } from 'vue';
   import { useRouter } from 'vue-router';
-  import time from '@/hook/useDayjs';
+  import {realtiveTime} from '@/hook/useDayjs';
   import { ImagePreview } from 'vant';
+  import commentList from './components/comment-list.vue';
   import './github-markdown.css';
 
   const router = useRouter();
@@ -109,6 +118,12 @@
   .article-container {
     padding: 10px;
     margin-top: 46px;
+    position: fixed;
+    top: 0px;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
   }
   .art-title {
     font-size: 16px;
@@ -154,5 +169,9 @@
   .follow-btn {
     width: 85px;
     height: 29px;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
   }
 </style>
