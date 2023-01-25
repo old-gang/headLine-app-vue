@@ -3,41 +3,39 @@
     <van-cell-group v-if="store.user" class="my-info">
       <van-cell center :border="false" class="base-info">
         <template #icon>
-          <van-image
-            class="avator"
-            round
-            fit="cover"
-            :src="user.photo" />
+          <van-image class="avator" round fit="cover" :src="user.photo" />
         </template>
         <template #title>
-          <div class="name">{{user.name}}</div>
+          <div class="name">{{ user.name }}</div>
         </template>
         <template #value>
-          <van-button class="update-btn" size="small" round> 编辑资料 </van-button>
+          <van-button class="update-btn" size="small" round to="/user/profile">
+            编辑资料
+          </van-button>
         </template>
       </van-cell>
       <van-grid :border="false" class="data-info">
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">{{user.art_count}}</div>
+            <div class="count">{{ user.art_count }}</div>
             <div class="text">头条</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">{{user.follow_count}}</div>
+            <div class="count">{{ user.follow_count }}</div>
             <div class="text">关注</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">{{user.fans_count}}</div>
+            <div class="count">{{ user.fans_count }}</div>
             <div class="text">粉丝</div>
           </template>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <template #text>
-            <div class="count">{{user.like_count}}</div>
+            <div class="count">{{ user.like_count }}</div>
             <div class="text">获赞</div>
           </template>
         </van-grid-item>

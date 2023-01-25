@@ -46,4 +46,11 @@ export const routes = [
     component: () => import('@/views/article'),
     props: true,
   },
+  // 用户资料
+  {
+    path: '/user/profile',
+    name: 'user-profile',
+    component: () => import('@/views/user-profile'),
+    props: true,
+  },
 ];

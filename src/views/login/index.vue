@@ -74,7 +74,7 @@
   const userInfoStore = useUserInfoStore();
   // 收集用户信息
   const user = reactive({
-    mobile: '17812085173', //17090086870
+    mobile: '15155097056', //17090086870
     code: '246810', //246810
   });
   // 倒计时按钮的显示与隐藏
