@@ -53,4 +53,11 @@ export const routes = [
     component: () => import('@/views/user-profile'),
     props: true,
   },
+  // 小智同学
+  {
+    path: '/user/chat',
+    name: 'user-chat',
+    component: () => import('@/views/user-chat'),
+    props: true,
+  },
 ];

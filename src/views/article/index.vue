@@ -1,7 +1,12 @@
 <template>
   <div class="article-wrap">
     <!-- Header 区域 -->
-    <van-nav-bar fixed title="文章详情" left-arrow @click-left="router.back()" />
+    <van-nav-bar
+      fixed
+      title="文章详情"
+      class="app-nav-bar"
+      left-arrow
+      @click-left="router.back()" />
 
     <!-- 文章信息区域 -->
     <div class="article-container">
@@ -65,7 +70,7 @@
   import { reqGetArticleById } from '@/api/article';
   import { ref, onMounted, nextTick } from 'vue';
   import { useRouter } from 'vue-router';
-  import {realtiveTime} from '@/hook/useDayjs';
+  import { realtiveTime } from '@/hook/useDayjs';
   import { ImagePreview } from 'vant';
   import commentList from './components/comment-list.vue';
   import './github-markdown.css';

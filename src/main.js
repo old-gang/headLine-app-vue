@@ -17,7 +17,7 @@ import 'amfe-flexible';
 // 引入字体样式
 import '@/assets/css/icon.less';
 // 引入全局样式
-// import '@/assets/css/index.less';
+import '@/assets/css/index.less';
 
 const app = createApp(App);
 // 全局注册vant
