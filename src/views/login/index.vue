@@ -63,13 +63,14 @@
 </script>
 <script setup>
   import { ref, reactive } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
   // 请求函数
   import { login, sendSms } from '@/api/user';
   import { Toast } from 'vant';
   import { useUserInfoStore } from '@/store/userInfo';
   // 获取路由器
   const router = useRouter();
+  const route = useRoute();
   // 获取仓库
   const userInfoStore = useUserInfoStore();
   // 收集用户信息
@@ -113,7 +114,8 @@
       // 提交仓库，存储token
       userInfoStore.USER(res.data);
       // 跳转回原来的页面
-      router.back();
+      const redirect = route.query.redirect || '/';
+      router.push(redirect);
     } catch (error) {
       Toast.fail('登录失败，手机号或验证码错误');
     }

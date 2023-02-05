@@ -96,7 +96,7 @@
   // 卸载组件
   onBeforeUnmount(() => {
     // 断开消息
-    socket.on('disconnect', function () {
+    socket.value.on('disconnect', function () {
       console.log('断开链接');
     });
   });
